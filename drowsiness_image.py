@@ -68,14 +68,6 @@ def detect():
             EAR = (leftEAR + rightEAR) / 2.0
             #live datawrite in csv
             
-            # Compute the convex hull for both the eyes and then visualize it
-            leftEyeHull = cv2.convexHull(leftEye)
-            rightEyeHull = cv2.convexHull(rightEye)
-            # Draw the contours 
-            cv2.drawContours(image, [leftEyeHull], -1, (0, 255, 0), 1)
-            cv2.drawContours(image, [rightEyeHull], -1, (0, 255, 0), 1)
-            cv2.drawContours(image, [mouth], -1, (0, 255, 0), 1)
-            
             MAR = mouth_aspect_ratio(mouth)
             # Check if EAR < EAR_THRESHOLD, if so then it indicates that a blink is taking place 
             # Thus, count the number of frames for which the eye remains closed 
