@@ -52,21 +52,12 @@ def detect():
             shape = predictor(gray, rect)
             # Convert it to a (68, 2) size numpy array 
             shape = face_utils.shape_to_np(shape)
-            # Draw a rectangle over the detected face 
-            (x, y, w, h) = face_utils.rect_to_bb(rect) 
-            cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)	
-            # Put a number 
             
-            leftEye = shape[lstart:lend]
-            rightEye = shape[rstart:rend] 
             mouth = shape[mstart:mend]
-            # Compute the EAR for both the eyes 
-            leftEAR = eye_aspect_ratio(leftEye)
-            rightEAR = eye_aspect_ratio(rightEye)
-
-            # Take the average of both the EAR
+            
+            # # Take the average of both the EAR
             EAR = (leftEAR + rightEAR) / 2.0
-            #live datawrite in csv
+            # #live datawrite in csv
             
             MAR = mouth_aspect_ratio(mouth)
             # Check if EAR < EAR_THRESHOLD, if so then it indicates that a blink is taking place 
